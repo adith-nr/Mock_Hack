@@ -42,7 +42,7 @@ def generate_response(prompt):
                         - If indian is the cuisine, use the {indian_dishes} dictionary to generate the recipe.
                         - Only write the recipe title, without any adjectives or extra words.
                         - After the title, write the ingredients and instructions in plain text.
-                    
+                        - Give good spacing and section wise headers and emojis.
                     
                 """
             },

@@ -1,0 +1,30 @@
+{
+  "name": "mock_hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adith-nr/Mock_Hack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/adith-nr/Mock_Hack/issues"
+  },
+  "homepage": "https://github.com/adith-nr/Mock_Hack#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "groq": "^3.95.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.10"
+  }
+}

@@ -6,14 +6,28 @@ export const promoptController = async (req,res)=>{
     console.log(controlPanelInputs,cartItems);
 
     const { dishType, cuisine,mealTime,maxCookingTime,servings,additionalInstructions} = controlPanelInputs;
-    let ingredients = [];
-    cartItems.map((item)=>(
-        ingredients.push(item.name,item.quantity)
-    ))
+    
+    const ingredients=cartItems.map((item)=>(
+        `${item.name} (${item.quantity})`
+    )).join("\n");
+
+
+    const user = req.user;
+    const allergiesStr = user.allergies?.length ? user.allergies.join(",") : null
+    
+    const cookingLevel = user.cookingLevel;
+    const diet = user.diet?.length ? user.diet.join(",") : null;
+
+
     const prompt = `
             You are a smart recipe generator.
 
             Generate a detailed and well-structured ${dishType.toLowerCase()} recipe for ${mealTime}, using ${cuisine} cuisine. It should serve ${servings} people and take no more than ${maxCookingTime} minutes to prepare.
+
+            User preferences:
+            ${allergiesStr ? `Allergies: ${allergiesStr}` : ''}
+            ${cookingLevel ? `Cooking level: ${cookingLevel}` : ''}
+            ${diet ? `Diet: ${diet}` : ''}
 
             Available ingredients and their quantities:
             ${ingredients}

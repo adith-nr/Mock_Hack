@@ -27,4 +27,3 @@ def generate_response(prompt):
     )
     return chat_completion.choices[0].message.content
 
-print(generate_response("What is the recipe for a pizza?"))

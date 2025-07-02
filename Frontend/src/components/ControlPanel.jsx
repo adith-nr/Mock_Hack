@@ -72,14 +72,6 @@ const ControlPanel = () => (
         className="border border-green-300 rounded px-3 py-2 min-h-[80px] resize-y bg-gray-100"
       />
     </div>
-
-    {/* Generate Button */}
-    <button
-      className="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition mt-4"
-      type="button"
-    >
-      Generate Recipe
-    </button>
   </section>
 );
 

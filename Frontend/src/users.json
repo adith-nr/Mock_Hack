@@ -1,0 +1,12 @@
+[
+  {
+    "userId": "demoUser",
+    "password": "demoPass",
+    "name": "Demo User",
+    "email": "demo@example.com",
+    "allergies": "None",
+    "cuisinePreferences": "Italian, Indian",
+    "dietaryConcerns": "Vegetarian",
+    "cookingLevel": "Intermediate"
+  }
+]

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from LLM import generate_response
+from LLM import summarize_recipe
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -21,5 +21,5 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 def chat(request:ChatRequest):
-    response = generate_response(request.prompt)
+    response = summarize_recipe(request.prompt)
     return {"response":response}

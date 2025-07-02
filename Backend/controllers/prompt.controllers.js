@@ -38,7 +38,7 @@ export const promoptController = async (req,res)=>{
             1. Recipe Title
             2. Ingredients (with quantities)
             3. Step-by-step Instructions
-           
+            
             `;
 
     console.log(prompt);

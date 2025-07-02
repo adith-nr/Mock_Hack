@@ -10,15 +10,22 @@ import pandas as pd
 df = pd.read_csv("output.csv")
 df = df[['food_name','energy_kcal','carb_g','protein_g'	,'fat_g']]
 
+indian_dishes = df['food_name'].tolist()[:100]
+
+
 def get_food_info2(food_name):
-    matches = df[df['food_name'].str.contains(food_name, case=False, na=False)]
-    if not matches.empty:
-        return (
-    f"Calories: {matches['energy_kcal'].values[0]:.2f} "
-    f"Carbs: {matches['carb_g'].values[0]:.2f} "
-    f"Protein: {matches['protein_g'].values[0]:.2f} "
-    f"Fat: {matches['fat_g'].values[0]:.2f} per 100g"
-)
+    for words in food_name.split()[-1:]:
+        matches = df[df['food_name'].str.contains(words, case=False, na=False)]
+        print(matches)
+        if not matches.empty:
+            return (
+                f"Calories: {matches['energy_kcal'].values[0]:.2f} "
+                f"Carbs: {matches['carb_g'].values[0]:.2f} "
+                f"Protein: {matches['protein_g'].values[0]:.2f} "
+                f"Fat: {matches['fat_g'].values[0]:.2f} per 100g"
+            )
+        else:
+            return None
     else:
         return None
 
@@ -27,16 +34,17 @@ def generate_response(prompt):
         messages=[
             {
                 "role": "system",
-                "content": (
-                    "You are a helpful recipe assistant.\n"
-                    "You will be given a user query and must generate a recipe.\n\n"
-                    "Your response must start with this exact format:\n"
-                    "Recipe Title: <name of the recipe>\n\n"
-                    "- Only write the recipe title, without any adjectives or extra words.\n"
-                    "- After the title, write the ingredients and instructions in plain text.\n"
+                "content": f"""
+                    -You are a helpful recipe assistant.
+                    -You will be given a user query and must generate a recipe.
+                    -Your response must start with this exact format
+                        -Recipe Title: <name of the recipe>
+                        - If indian is the cuisine, use the {indian_dishes} dictionary to generate the recipe.
+                        - Only write the recipe title, without any adjectives or extra words.
+                        - After the title, write the ingredients and instructions in plain text.
                     
                     
-                )
+                """
             },
             {
                 "role": "user",
@@ -60,6 +68,7 @@ def extract_recipe_title(response):
 def summarize_recipe(prompt):
     response = generate_response(prompt)
     recipe_title = extract_recipe_title(response)
+    print(recipe_title)
     if not recipe_title:
         print(" Could not extract recipe title.")
         return response

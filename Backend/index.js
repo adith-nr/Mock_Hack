@@ -1,8 +1,14 @@
 import express from "express";
 import cors from "cors";
 import promptRoutes from "./routes/prompt.routes.js";
+import { ConnectDB } from "./db.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+
+ConnectDB()
 
 app.use(cors());
 
